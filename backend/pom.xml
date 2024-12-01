@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cia.northboat</groupId>
-    <artifactId>Auth-Sim</artifactId>
+    <artifactId>Auth-Platform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ECC-Auth-Platform</name>
     <description>ECC-Auth-Platform</description>
@@ -53,6 +53,23 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- JPBC 打包 -->
+        <dependency>
+            <groupId>jpbc.api</groupId>
+            <artifactId>api</artifactId>
+            <version>2.0.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/jpbc-api-2.0.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>jpbc-plaf</groupId>
+            <artifactId>plaf</artifactId>
+            <version>2.0.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/jpbc-plaf-2.0.0.jar</systemPath>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -74,7 +91,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>cia.northboat.auth.AuthApplication</mainClass>
-                    <skip>true</skip>
+                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>

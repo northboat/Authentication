@@ -32,8 +32,8 @@
 						<div class="inner">
 							<h2>Menu</h2>
 							<ul class="links">
-								<li><a href="/home">Home</a></li>
-								<li><a href="/auth">Auth</a></li>
+								<li><a th:href="@{/home}">Home</a></li>
+								<li><a th:href="@{/auth}">Auth</a></li>
 								<li><a th:href="@{/logout}">Logout</a></li>
 								<li><a href="https://github.com/northboat" target="_blank">More</a></li>
 							</ul>
@@ -46,8 +46,8 @@
 						<div class="inner">
 							<div class="logo"><span class="icon fa-gem"></span></div>
 							<h2>Bear's Auth Platform</h2>
-							<p>一个基于 ECC 的身份认证仿真平台， site template by <a href="http://html5up.net">HTML5 UP</a></p>
-							<button onclick="sendRequest()">Test</button>
+							<p>一个身份认证仿真平台，template from <a th:href="@{/elements}">HTML5 UP</a></p>
+							<a target="_blank" href="https://northboat.github.io/docs/sec/crypto/auth/survey-on-rfid-auth.html" class="button">RFID认证综述</a>
 						</div>
 					</section>
 
@@ -57,7 +57,7 @@
 						<!-- One -->
 							<section id="one" class="wrapper spotlight style1">
 								<div class="inner">
-									<a href="#" class="image">
+									<a th:href="@{/auth/schnorr}" class="image">
 										<img src="/images/pic01.jpg" alt="" />
 									</a>
 									<div class="content">
@@ -66,7 +66,7 @@
 											P. Tuyls, L. Batina, RFID-tags for anti-counterfeiting, Lect. Notes Comput. Sci. 3860 (2006) 115–131.
 											C. Schnorr 发布的基于 ECC 变体的认证协议，一个单密钥轮的 ECC 认证方案
 										</p>
-										<a href="/paper/RFID-Tags_for_anti-counterfeiting.pdf" class="special" target="_blank">Learn more</a>
+										<a href="/paper/RFID-Tags_for_anti-counterfeiting.pdf" class="special" target="_blank">View the Paper</a>
 									</div>
 								</div>
 							</section>
@@ -83,7 +83,7 @@
 											L. Batina, J. Guajardo, T. Kerins, N. Mentens, P. Tuyls, I. Verbauwhede, Public-key cryptography for RFID-tags, in: Fifth IEEE International Conference on Pervasive Computing and Communications Workshops, 2007, pp. 217–222.
 											Okamoto 发布的基于 ECC 变体的认证协议，以避免主动攻击，采用双密钥结构
 										</p>
-										<a href="/paper/public-key-cryptography-for-rfid-tags.pdf" class="special" target="_blank">Learn more</a>
+										<a href="/paper/public-key-cryptography-for-rfid-tags.pdf" class="special" target="_blank">View the Paper</a>
 									</div>
 								</div>
 							</section>
@@ -100,7 +100,7 @@
 											Y.K. Lee, L. Batina, I. Verbauwhede, EC-RAC (ECDLP Based Randomized Access Control): Provably Secure RFID Authentication Protocol, IEEE International Conference on RFID, 2008, pp. 97–104.
 											为了解决 RFID 系统的要求，Lee 等人设计了一种基于 ECDLP 的新型 RFID 协议
 										</p>
-										<a target="_blank" href="/paper/EC-RAC(ECDLP_Based_Randomized_Access_Control)_Provably_Secure_RFID_authentication_protocol.pdf" class="special">Learn more</a>
+										<a target="_blank" href="/paper/EC-RAC(ECDLP_Based_Randomized_Access_Control)_Provably_Secure_RFID_authentication_protocol.pdf" class="special">View the Paper</a>
 									</div>
 								</div>
 							</section>
@@ -122,7 +122,7 @@
 											<p>
 												Keywords: RFID security、privacy、tracking attack、ECDLP
 											</p>
-											<a target="_blank" href="/paper/An_ECDLP-Based_Randomized_Key_RFID_Authentication_Protocol.pdf"  class="special">Learn more</a>
+											<a target="_blank" href="/paper/An_ECDLP-Based_Randomized_Key_RFID_Authentication_Protocol.pdf"  class="special">View the Paper</a>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="/images/pic05.jpg" alt="" /></a>
@@ -130,23 +130,13 @@
 											<p>
 												Keywords: Internet-of-Things (IoT)、RFID Public-key cryptographic (PKC)、Elliptic curve cryptosystem (ECC)、ID-verifier
 											</p>
-											<a target="_blank" href="/paper/A_secure_ECC-based_RFID_authentication_scheme_integrated_with_ID-verifier_transfer_protocol.pdf" class="special">Learn more</a>
+											<a target="_blank" href="/paper/A_secure_ECC-based_RFID_authentication_scheme_integrated_with_ID-verifier_transfer_protocol.pdf" class="special">View the Paper</a>
 										</article>
-										<article>
-											<a href="#" class="image"><img src="/images/pic06.jpg" alt="" /></a>
-											<h3 class="major">Ante fermentum</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="/images/pic07.jpg" alt="" /></a>
-											<h3 class="major">Fusce consequat</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
-										</article>
+
+
 									</section>
 									<ul class="actions">
-										<li><a href="#" class="button">Browse All</a></li>
+										<li><a th:href="@{/auth}" class="button">Browse All</a></li>
 									</ul>
 								</div>
 							</section>

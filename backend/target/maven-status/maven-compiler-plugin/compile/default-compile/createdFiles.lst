@@ -1,7 +1,0 @@
-cia\northboat\auth\controller\MainController.class
-cia\northboat\auth\AuthApplication.class
-cia\northboat\auth\controller\PathVariableController.class
-cia\northboat\auth\dao\UserRepository.class
-cia\northboat\auth\config\SecurityConfig.class
-cia\northboat\auth\controller\BasicController.class
-cia\northboat\auth\pojo\User.class

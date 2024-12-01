@@ -1,72 +1,61 @@
-/*
- * Copyright 2013-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cia.northboat.auth.controller;
 
 import cia.northboat.auth.pojo.User;
+import cia.northboat.auth.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
- */
 @Controller
 public class BasicController {
 
-    // http://127.0.0.1:8080/hello?name=lisi
-    @RequestMapping("/hello")
-    @ResponseBody
-    public Map<String, String> hello(@RequestBody Map<String, String> requestData) {
-        String name = requestData.get("name");
-        System.out.println(name);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "hello " + name);
-        return response;
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService){
+        this.userService = userService;
     }
 
-    // http://127.0.0.1:8080/user
-    @RequestMapping("/user")
-    @ResponseBody
-    public User user() {
-        User user = new User();
-//        user.setName("theonefx");
-//        user.setAge(666);
-        return user;
+    @GetMapping("/home")
+    public String home() {
+        User user = userService.findById("northboat");
+        System.out.println(user);
+        return "index";  // 返回 templates/index.html 页面
     }
 
-    // http://127.0.0.1:8080/save_user?name=newName&age=11
-    @RequestMapping("/save_user")
-    @ResponseBody
-    public String saveUser(User u) {
-        return "user will save: name=" + u.getId() + ", age=" + u.getId();
+    @GetMapping("/login")
+    public String login() {
+        return "login";  // 返回 templates/login.html 页面
     }
 
-    // http://127.0.0.1:8080/html
-    @RequestMapping("/html")
-    public String html() {
-        return "index.html";
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        logoutHandler.logout(request, response, null);
+        return "login";
     }
 
-    @ModelAttribute
-    public void parseUser(@RequestParam(name = "name", defaultValue = "unknown user") String name
-            , @RequestParam(name = "age", defaultValue = "12") Integer age, User user) {
-//        user.setName("zhangsan");
-//        user.setAge(18);
+    @GetMapping("/elements")
+    public String elements() {
+        return "elements";  // 返回 templates/login.html 页面
+    }
+
+
+    @GetMapping("/auth")
+    public String auth() {
+        return "auth";  // 返回 templates/login.html 页面
+    }
+
+
+    @RequestMapping(value = "/auth/{algo}", method = RequestMethod.GET)
+    public String getLogin(@PathVariable("algo") String algo, Model model) {
+        System.out.println(algo);
+        model.addAttribute("algo", algo);
+        return "auth";
     }
 }
+

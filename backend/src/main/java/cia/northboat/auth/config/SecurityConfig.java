@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                    .requestMatchers("/login").permitAll()
+                        .requestMatchers("/login", "/image", "/assets/**", "/images/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -59,13 +59,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    之前的办法
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-//        // 也可以使用自定义 UserDetailsService 进行数据库认证
-//        // auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
-//    }
-
     // 用户权限拦截
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
@@ -75,4 +68,5 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder());  // 配置 UserDetailsService 和密码编码器
         return authenticationManagerBuilder.build();
     }
+
 }
