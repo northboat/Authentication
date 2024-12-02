@@ -62,16 +62,16 @@ public class Schnorr {
         return false;
     }
 
-//    public static void main(String[] args) {
-//        SchnorrKey key = keyGen();
-//
-//        Element r = Zr.newRandomElement().getImmutable();
-//        Element X = submit(key.getP(), r);
-//
-//        Element e = challenge();
-//        Element y = response(key.getZ(), e, r);
-//
-//        boolean flag = auth(X, y, e);
-//        System.out.println(flag);
-//    }
+    public static void main(String[] args) {
+        SchnorrKey key = keyGen();
+
+        Element r = Zr.newRandomElement().getImmutable();
+        Element X = submit(key.getP(), r);
+
+        Element e = challenge();
+        Element y = response(key.getZ(), e, r);
+
+        boolean flag = auth(X, y, e);
+        System.out.println(flag);
+    }
 }

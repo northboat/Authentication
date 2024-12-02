@@ -1,0 +1,3 @@
+cia\northboat\auth\dao\ImageRepository.class
+cia\northboat\auth\service\ImageService.class
+cia\northboat\auth\pojo\Image.class
