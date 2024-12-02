@@ -3,7 +3,7 @@ spring:
     name: ECC-Auth-Platform
   datasource:
     username: root
-    password: ""
+    password: "roohees8Pohng5meechi7ufaiwiez2sh"
     url: jdbc:mysql://43.156.105.197:3306/auth_platform?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
@@ -21,9 +21,9 @@ spring:
       hibernate.dialect: org.hibernate.dialect.MySQL8Dialect  # MySQL方言
 
 server:
-  port: 8443
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: ""
-    key-store-type: PKCS12
-    key-alias: springboot
+  port: 8080
+  #ssl:
+    #key-store: classpath:keystore.p12
+    #key-store-password: "011026"
+    #key-store-type: PKCS12
+    #key-alias: springboot
