@@ -12,6 +12,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
@@ -24,14 +26,22 @@ public class ImageService {
         this.imageRepository = imageRepository;
     }
 
+    private static final Map<String, Integer> algoImage;
+
+    static{
+        algoImage = new HashMap<>();
+        algoImage.put("Schnorr", 4);
+    }
+
     private final Random random = new Random();
 
     public Image findById(int id){
-        Image image = imageRepository.findById(id);
-        if(Objects.isNull(image)){
-            throw new RuntimeException("Image not found");
-        }
-        return image;
+        return imageRepository.findById(id);
+    }
+
+    public Image findById(String algo){
+        int id = algoImage.getOrDefault(algo, -1);
+        return findById(id);
     }
 
     public long count(){

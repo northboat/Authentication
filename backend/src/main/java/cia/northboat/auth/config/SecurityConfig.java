@@ -31,7 +31,7 @@ public class SecurityConfig {
 
     public static void main(String[] args) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode("011026");
+        String encodedPassword = passwordEncoder.encode("wdnmd");
         System.out.println(encodedPassword);
     }
 
@@ -39,14 +39,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                        .requestMatchers("/login", "/image", "/assets/**", "/images/**").permitAll()
+                    .requestMatchers("/login.html", "/image", "/assets/**", "/images/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/login.html")
                     .loginProcessingUrl("/customLogin")
-                    .defaultSuccessUrl("/home")  // 登录成功后跳转到主页
-                    .failureUrl("/login?error=true")  // 登录失败后跳转回登录页面
+                    .defaultSuccessUrl("/")  // 登录成功后跳转到主页
+                    .failureUrl("/login.html?error=true")  // 登录失败后跳转回登录页面
                     .permitAll()
                 .and()
                 .logout()
@@ -68,5 +68,6 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder());  // 配置 UserDetailsService 和密码编码器
         return authenticationManagerBuilder.build();
     }
+
 
 }

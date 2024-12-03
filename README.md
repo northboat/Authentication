@@ -47,11 +47,9 @@ public ResultUtil auth(@RequestParam Map<String, String> params){
 }
 ```
 
-
-
 ## 部署
 
-### 导出
+### 打包
 
 jpbc 导出需要配置 maven
 
@@ -73,6 +71,35 @@ jpbc 导出需要配置 maven
     <systemPath>${pom.basedir}/lib/jpbc-plaf-2.0.0.jar</systemPath>
 </dependency>
 ```
+
+除此以外，Maven 打包将默认不包含`<scope>`为 system 的包，所以还要额外在 build 插件中配置
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring-boot.version}</version>
+            <configuration>
+                <mainClass>cia.northboat.auth.AuthApplication</mainClass>
+                <skip>false</skip>
+                <includeSystemScope>true</includeSystemScope>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>repackage</id>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+
 
 后台运行
 
