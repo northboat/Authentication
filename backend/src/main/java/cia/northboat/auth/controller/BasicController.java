@@ -1,9 +1,9 @@
 package cia.northboat.auth.controller;
 
+import cia.northboat.auth.pojo.Friend;
 import cia.northboat.auth.pojo.Image;
-import cia.northboat.auth.pojo.User;
+import cia.northboat.auth.service.FriendService;
 import cia.northboat.auth.service.ImageService;
-import cia.northboat.auth.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +12,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class BasicController {
 
-    private final UserService userService;
 
     private final ImageService imageService;
 
+    private final FriendService friendService;
+
     @Autowired
-    public BasicController(UserService userService, ImageService imageService){
-        this.userService = userService;
+    public BasicController(ImageService imageService, FriendService friendService){
         this.imageService = imageService;
+        this.friendService = friendService;
     }
 
     @GetMapping({"/home", "/"})
-    public String home() {
-        User user = userService.findById("northboat");
-        System.out.println(user);
+    public String home(Model model) {
+        List<Friend> friends = friendService.getAllFriendsByLastTime();
+        model.addAttribute("friends", friends);
         return "index";  // 返回 templates/index.html 页面
     }
 

@@ -142,43 +142,46 @@
 							</section>
 
 					</section>
-
 				<!-- Footer -->
 					<section id="footer">
 						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
+							<h2 class="major">A Little Game: Be a σ Man</h2>
+							<p>输入名字和PIN码，若名字不存在，将自动创建用户并列入排名，若存在并且PIN码正确，将更新当前时间并记录最长时间，请记住第一次录入的PIN码，该排名按当前最长时间排序</p>
+							<p th:if="${msg != null and msg != ''}" th:text="${msg}"></p>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+									<tr>
+										<th>Name</th>
+										<th>Last Time</th>
+										<th>Longest</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="friend: ${friends}">
+										<td th:text="${friend.getName()}"></td>
+										<td th:text="${friend.getLastTime()}"></td>
+										<td th:text="${friend.getLongest()}"></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<form method="post" th:action="@{/record}">
+								<div class="row gtr-uniform">
+									<div class="col-6 col-12-xsmall">
 										<label for="name">Name</label>
 										<input type="text" name="name" id="name" />
 									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
+									<div class="col-6 col-12-xsmall">
+										<label for="pin">PIN</label>
+										<input type="password" name="pin" id="pin" />
 									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
+								</div><br>
 								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
+									<li><input type="submit" value="搭个∠先" /></li>
 								</ul>
 							</form>
-							<ul class="contact">
-								<li class="icon solid fa-home">
-									Untitled Inc<br />
-									1234 Somewhere Road Suite #2894<br />
-									Nashville, TN 00000-0000
-								</li>
-								<li class="icon solid fa-phone">(000) 000-0000</li>
-								<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-								<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
-								<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-							</ul>
+
 							<ul class="copyright">
 								<li>&copy; cia.northboat. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
