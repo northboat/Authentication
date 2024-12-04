@@ -32,7 +32,7 @@ public class FriendController {
         String pin = params.get("pin");
 
         int flag = friendService.record(name, pin);
-        String msg = flag == 0 ? "PIN码错误" : flag == 1 ? "加入游戏成功" : "更新成功";
+        String msg = flag == -1 ? "NAME 和 PIN 不能为空" : flag == 0 ? "PIN码错误" : flag == 1 ? "加入游戏成功" : "更新成功";
         model.addAttribute("msg", msg);
 
         List<Friend> friends = friendService.getAllFriendsByLastTime();

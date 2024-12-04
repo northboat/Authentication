@@ -35,6 +35,9 @@ public class FriendService {
 
 
     public int record(String name, String pin){
+        if(Objects.isNull(name) || Objects.isNull(pin) || name.equals("") || pin.equals("")){
+            return -1;
+        }
         Friend friend = friendRepository.findByName(name);
         if(Objects.isNull(friend)){
             saveFriend(name, pin);
