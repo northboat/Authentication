@@ -2,6 +2,7 @@ package cia.northboat.auth.sim;
 
 import cia.northboat.auth.pojo.Key;
 import cia.northboat.auth.pojo.Pair;
+import cia.northboat.auth.utils.FixedSizeQueue;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Field;
 import it.unisa.dia.gas.jpbc.Pairing;
@@ -40,7 +41,8 @@ public class Schnorr {
     static{
         G = bp.getG1();
         Zr = bp.getZr();
-        list = new ArrayList<>();
+        // 一个固定长度的队列
+        list = new FixedSizeQueue<>(10);
     }
 
     // 密钥生成
@@ -103,6 +105,8 @@ public class Schnorr {
         detail.add(new Pair("yP+eZ", X));
         detail.add(new Pair("Auth Success", flag));
         detail.add(new Pair("Auth Cost", et-st+"ms"));
+
+//        System.out.println(list.size());
 
         return detail;
     }
