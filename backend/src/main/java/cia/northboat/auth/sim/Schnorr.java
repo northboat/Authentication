@@ -84,7 +84,7 @@ public class Schnorr {
         detail.add(new Pair("x", x));
         detail.add(new Pair("P", P));
         detail.add(new Pair("Z", Z));
-        detail.add(new Pair("Key Generate Cost", et-st));
+        detail.add(new Pair("Key Generate Cost", et-st+"ms"));
 
 
         st = System.currentTimeMillis();
@@ -102,7 +102,7 @@ public class Schnorr {
         detail.add(new Pair("y", y));
         detail.add(new Pair("yP+eZ", X));
         detail.add(new Pair("Auth Success", flag));
-        detail.add(new Pair("Auth Cost", et-st));
+        detail.add(new Pair("Auth Cost", et-st+"ms"));
 
         return detail;
     }

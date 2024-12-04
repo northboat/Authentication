@@ -58,12 +58,13 @@
 						</p>
 						<h4>认证步骤</h4>
 						<div style="text-align: center;">
-							<img th:if="${image != null and image != ''}"  th:src="${image}" alt="协议步骤">
-						</div>
+							<code th:if="${msg != null and msg != ''}" th:text="${msg}"></code>
+							<img th:if="${image != null and image != ''}" style="max-width: 100%; height: auto" th:src="${image}" alt="协议步骤">
+						</div><br>
 
 						<h4>会话</h4>
-						<blockquote th:if="${msg != null and msg != ''}" th:text="${msg}"></blockquote>
-						<pre><code><p th:text="${detail}" style="margin-bottom: 2px"></p></code></pre><br>
+
+						<pre><code><p th:text="${detail}" style="margin-bottom: 4px"></p></code></pre><br>
 
 						<h4>协议</h4>
 						<form method="post" th:action="@{/auth}">
@@ -79,7 +80,6 @@
 							<div class="col-12">
 								<ul class="actions">
 									<li><input type="submit" value="Authenticate" class="primary" /></li>
-									<li><input type="reset" value="Reset" /></li>
 								</ul>
 							</div>
 						</form>
