@@ -181,3 +181,30 @@ server:
 ```
 
 打包上传部署，通过`ip:8443`进行访问，成功，经测试 GitHub Page 同样允许自编译的 SSL 证书
+
+### 时区
+
+后端全局设置时区为东八区
+
+```java
+@SpringBootApplication
+public class AuthApplication {
+    public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+        SpringApplication.run(AuthApplication.class, args);
+    }
+}
+```
+
+同时设置 JPA 和 JDBC 时区
+
+```yaml
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc.time_zone: Asia/Shanghai
+  datasource:
+        url: jdbc:mysql://43.156.105.197:3306/auth_platform?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+```
+

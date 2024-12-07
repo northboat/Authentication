@@ -30,6 +30,7 @@ public class Friend {
 
     public void setLongest(){
         int gap = DateUtil.getDayGap(this.lastTime);
+        System.out.println("gap: " + gap);
         this.longest = Math.max(gap, longest);
     }
 }

@@ -46,8 +46,10 @@ public class FriendService {
         if(!friend.getPin().equals(pin)){
             return 0;
         }
-        friend.setLastTime(new Date());
+        Date now = new Date();
+        System.out.println(now);
         friend.setLongest();
+        friend.setLastTime(now);
         friendRepository.save(friend);
         return 2;
     }
